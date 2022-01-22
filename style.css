@@ -1,0 +1,37 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.background-color{
+    background-color: #F1F1F1;
+}
+.size{
+    width: 510px;
+}
+.icon{
+    top: 30%;
+    right: 8%;
+    color: #6C757D;
+}
+input:focus ~ .icon{
+    display: none;
+}
+.slide-background{
+    background-color: #FEEAE9;
+}
+.button{
+    background:linear-gradient(180deg, #FF589B -0.01%, #FF136F 99.99%);
+    border: none;
+    color: white;
+}
+h2{
+color:#FF9C35;
+}
+.mini-card-1{
+    background-color:#FF9C35;
+}
+.mini-card-2{
+    background-color: #FF136F;
+}
+.mini-card-3{
+    background-color:#FF9C35;
+}
