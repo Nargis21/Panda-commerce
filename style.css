@@ -4,6 +4,9 @@ body{
 .background-color{
     background-color: #F1F1F1;
 }
+.slide-gap{
+    margin-bottom: 100px;
+}
 .size{
     width: 510px;
 }
