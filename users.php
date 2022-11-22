@@ -22,11 +22,23 @@ $unread = mysqli_query($db_connect,$unread_query);
 // echo "<pre>";
 // print_r($allData);
 // echo "</pre>";
-
 ?>
+
 <div class="container">
+
+<div class="text-center">
+<div class="toast show">
+    <div class="toast-header">
+    <strong class="me-auto">Message Notifications</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+    </div>
+    <div class="toast-body">
+    <h6 class="text-center">You have <?= $read->num_rows ?> read message & <?= $unread->num_rows ?> unread message! </h6>
+    </div>
+  </div>
+</div>
+
   <h3 class="text-center pb-2">User Data</h3>
-  <h6 class="text-center pb-5">You have <?= $read->num_rows ?> read message & <?= $unread->num_rows ?> unread message! </h6>
   <table class="table table-bordered">
     <thead class="table-primary">
       <tr>
@@ -68,7 +80,7 @@ $unread = mysqli_query($db_connect,$unread_query);
         </th>
         <td>
           <?= $user['firstName']; ?>
-        </td> <!-- //instead of "php echo" we4 can use "=" -->
+        </td> <!-- //instead of "php echo" we can use "=" -->
         <td>
           <?= $user['lastName']; ?>
         </td>
@@ -116,6 +128,7 @@ $unread = mysqli_query($db_connect,$unread_query);
  <a href="restoreUsers.php" class="btn btn-info">Restore Users</a>
  </div>
 </div>
+
 <?php
 require_once "includes/footer.php";
 ?>

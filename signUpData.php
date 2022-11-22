@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php require_once "includes/db.php"; ?>
 <?php require_once "includes/header.php"; ?>
 <?php
@@ -13,6 +14,11 @@
 // echo "<br>";
 // echo "Message: ".$_POST["message"];
 
+//------Get duplicate email-------
+$userEmail = $_POST["userEmail"];
+
+$check_duplicate = "SELECT * FROM users WHERE userEmail='$userEmail'";
+$duplicate = mysqli_query($db_connect,$check_duplicate);
 
 //------Get password from the signup form------
 $password = $_POST["password"];
@@ -25,23 +31,29 @@ $specialChars = preg_match('@[^\w]@', $password);
 
 //-------check empty field-------
 if(empty($_POST["firstName"]) || empty($_POST["lastName"]) || empty($_POST["userEmail"]) || empty($_POST["password"]) || empty($_POST["message"]) ){
-    echo '<div class="alert alert-danger" role="alert">
-   Please fill up the form correctly, you are missing something!
-  </div>';
+  $_SESSION['SignUpBlankError'] = "Please fill up the form correctly, you are missing something!";
+  header("location: signUp.php");
 }
 
 //--------check validate email--------
 elseif (!filter_var($_POST["userEmail"], FILTER_VALIDATE_EMAIL)) {
-    echo '<div class="alert alert-danger" role="alert">
-    Please provide a valid email!
-  </div>';
+  $_SESSION['SignUpEmailError'] = "Please provide a valid email!";
+  header("location: signUp.php");
 }
 
 //--------check password strength--------
 elseif(!($uppercase && $lowercase && $number && $specialChars && strlen($password) >= 8)) {
-    echo '<div class="alert alert-danger" role="alert">
-    Password should be at least 8 characters in length should include at least one upper case letter, one number, and one special character.
-  </div>';
+  $_SESSION['SignUpPasswordError'] = "Password should be at least 8 characters in length should include at least one upper case letter, one number, and one special character.";
+  header("location: signUp.php");
+}
+
+//--------check duplicate email--------
+elseif($duplicate->num_rows==1) {
+  echo '<div class="alert alert-danger" role="alert">
+ User already exists!
+</div>';
+$_SESSION['SignUpDuplicateUserError'] = "User already exists!";
+  header("location: signUp.php");
 }
 
 //-----default message-------
@@ -51,15 +63,14 @@ else{
 
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
-    $userEmail = $_POST["userEmail"];
     $message = $_POST["message"];
+    $encryptedPassword = md5($password);
 
-    $insert_query = "INSERT INTO users(firstName, lastName, userEmail, password, message) VALUES ('$firstName','$lastName','$userEmail','$password','$message')";
+    $insert_query = "INSERT INTO users(firstName, lastName, userEmail, password, message) VALUES ('$firstName','$lastName','$userEmail','$encryptedPassword','$message')";
 
     $insert = mysqli_query($db_connect, $insert_query);
 
        if($insert){
-        // echo "You have successfully registered!";
         header("location: login.php");
        }
        else{

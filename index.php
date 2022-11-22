@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['login'])){
+    header("location: login.php");
+}
+
 require_once "includes/header.php";
 require_once "includes/navbar.php";
 ?>    

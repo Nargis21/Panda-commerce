@@ -43,9 +43,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="signUp.php">Sign Up</a>
                         </li>
+                        <?php  
+                        if(!isset($_SESSION['login'])): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">Login</a>
                         </li>
+                        <?php endif ?>
+                        <?php
+                        if(isset($_SESSION['login'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                        <?php endif ?> 
                     </ul>
                 </div>
             </div>
