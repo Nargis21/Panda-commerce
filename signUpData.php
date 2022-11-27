@@ -1,6 +1,6 @@
 <?php session_start(); ?>
-<?php require_once "includes/db.php"; ?>
-<?php require_once "includes/header.php"; ?>
+<?php require_once "frontend/includes/db.php"; ?>
+<?php require_once "frontend/includes/header.php"; ?>
 <?php
 // echo "<pre>";
 // print_r($_POST);

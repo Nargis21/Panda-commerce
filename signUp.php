@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once "includes/header.php";
-require_once "includes/navbar.php";
+require_once "frontend/includes/header.php";
+// require_once "includes/navbar.php";
 ?>
 
-<div class="w-25 mx-auto pb-5">
-  <h1 class="text-xl pb-5 text-center">Sign Up</h1>
+<div class="w-25 mx-auto mb-5 pb-5">
+  <h1 class="text-xl py-5 text-center">Sign Up</h1>
   <form method="post" action="signUpData.php">
     <!-- Show form blank error message -->
     <?php
@@ -49,12 +49,12 @@ require_once "includes/navbar.php";
       <input name="userEmail" type="text" id="form3Example3" class="form-control" />
     </div>
 
-     <!-- Show email error message -->
-     <?php
-    if (isset($_SESSION['SignUpEmailError'])): ?>
+    <!-- Show email error message -->
+    <?php
+     if (isset($_SESSION['SignUpEmailError'])): ?>
     <p class="alert alert-danger">
       <?php echo $_SESSION['SignUpEmailError'];
-      session_destroy();
+       session_destroy();
       ?>
     </p>
     <?php endif ?>
@@ -85,9 +85,8 @@ require_once "includes/navbar.php";
     <button type="submit" class="btn btn-primary btn-block mb-4 w-100">
       Sign up
     </button>
+    <p>Already have an account?
+      <a class="text-blue" href="login.php">Sign In</a>
+    </p>
   </form>
 </div>
-
-<?php
-require_once "includes/footer.php";
-?>

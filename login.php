@@ -15,14 +15,13 @@ session_start();
 // require "includes/header.php";
 // require "includes/navbar.php";
 
-require_once "includes/header.php";
-require_once "includes/navbar.php";
-require_once "includes/header.php";
-require_once "includes/navbar.php";
+
+require_once "frontend/includes/header.php";
+// require_once "frontend/includes/navbar.php";
 ?>
 
-<div class="w-25 mx-auto pb-5">
-  <h1 class="text-xl pb-5 text-center">Login</h1>
+<div class="w-25 mx-auto py-5">
+  <h1 class="text-xl py-5 text-center">Login</h1>
   <form method="post" action="loginData.php" class="">
 
     <!-- Email input -->
@@ -42,7 +41,7 @@ require_once "includes/navbar.php";
     if (isset($_SESSION['loginError'])): ?>
     <p class="alert alert-danger">
       <?php echo $_SESSION['loginError'];
-       session_destroy();
+      session_destroy();
       ?>
     </p>
     <?php endif ?>
@@ -51,9 +50,8 @@ require_once "includes/navbar.php";
     <button type="submit" class="btn btn-primary btn-block mb-4 w-100">
       Login
     </button>
+    <p>Don't have an account yet ?
+      <a class="text-blue" href="signUp.php">Sign Up</a>
+    </p>
   </form>
 </div>
-
-<?php
-require_once "includes/footer.php";
-?>
