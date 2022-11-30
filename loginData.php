@@ -19,6 +19,7 @@ if($user->num_rows == 1){
         header("location: frontend/index.php");
     }
     else if($user_assoc["user_type"] == "admin") {
+        $_SESSION['userType'] = "admin";
         header("location: dashboard/index.php");
     }
     else{

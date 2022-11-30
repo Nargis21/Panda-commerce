@@ -25,8 +25,9 @@
         ——— CONTENT WRAPPER
         ===================================== -->
         <div class="content-wrapper">
-          
-          
+
+     
+
         </div>
         
 <?php require_once "includes/footer.php" ?>

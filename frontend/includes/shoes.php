@@ -1,7 +1,7 @@
 <?php
 require_once "includes/db.php";
 
-$get_shoes = "SELECT * FROM shoes WHERE active_status = 2";
+$get_shoes = "SELECT * FROM shoes WHERE active_status = 2 ORDER BY id DESC LIMIT 3";
 $shoes = mysqli_query($db_connect, $get_shoes);
 ?>
 
